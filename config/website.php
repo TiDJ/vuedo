@@ -7,4 +7,8 @@ return [
     'facebook_url' => '#',
     'twitter_username' => 'vuedo',
     'twitter_url' => 'https://twitter.com/vuedo',
+    'github_url' => 'https://github.com/TiDJ/vuedo',
+    'linkedin_url' => false,
+    'mail_url' => false,
+    'feed_url' => false
 ];
