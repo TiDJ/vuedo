@@ -1,14 +1,21 @@
 <?php
 
 namespace App;
+use Illuminate\Database\Eloquent\Model;
 
+// Slug
 use Acme\Traits\HashOrSlugScope;
 use Cviebrock\EloquentSluggable\Sluggable;
+
+// Moderation
 use Hootlex\Moderation\Moderatable;
 use Hootlex\Moderation\Status;
-use Illuminate\Database\Eloquent\Model;
+
+// Media
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+
+// Hashids
 use Vinkla\Hashids\Facades\Hashids;
 
 /**

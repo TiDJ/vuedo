@@ -162,6 +162,8 @@ return [
          * Third Party Providers...
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
         Cyvelnet\Laravel5Fractal\Laravel5FractalServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
@@ -192,7 +194,7 @@ return [
         'Auth'      => Illuminate\Support\Facades\Auth::class,
         'Blade'     => Illuminate\Support\Facades\Blade::class,
         'Cache'     => Illuminate\Support\Facades\Cache::class,
-//        'Config'    => Illuminate\Support\Facades\Config::class,
+        // 'Config' => Illuminate\Support\Facades\Config::class,
         'Config'    => Larapack\ConfigWriter\Facade::class,
         'Cookie'    => Illuminate\Support\Facades\Cookie::class,
         'Crypt'     => Illuminate\Support\Facades\Crypt::class,
@@ -218,10 +220,11 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'Fractal' => Cyvelnet\Laravel5Fractal\Facades\Fractal::class,
-        'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
-        'Active' => HieuLe\Active\Facades\Active::class,
-        'Meta'    => Eusonlito\LaravelMeta\Facade::class,
+
+        'Fractal'   => Cyvelnet\Laravel5Fractal\Facades\Fractal::class,
+        'Hashids'   => Vinkla\Hashids\Facades\Hashids::class,
+        'Active'    => HieuLe\Active\Facades\Active::class,
+        'Meta'      => Eusonlito\LaravelMeta\Facade::class,
     ],
 
 ];
