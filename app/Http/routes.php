@@ -31,25 +31,36 @@ Route::group(['middleware' => 'web'], function () {
 |--------------------------------------------------------------------------
 */
 Route::group(['prefix' => 'api', 'middleware' => 'api', 'namespace' => 'Api'], function () {
-    //posts
+
+    // Posts
     Route::post('posts/{posts}/publish', ['as' => 'api.posts.publish', 'uses' => 'PostsController@publish']);
     Route::post('posts/{posts}/image', ['as' => 'api.posts.updateImage', 'uses' => 'PostsController@updateImage']);
+    Route::get('posts/medias/{posts}', [ 'as' => 'api.posts.medias.index', 'uses' => 'PostsController@medias']);
+    Route::patch('posts/putInFront/{medias}', ['as' => 'api.putInFront.medias', 'uses' => 'PostsController@putInFront']);
     Route::resource('posts', 'PostsController', ['except' => ['create', 'edit']]);
 
-    //categories
+    // Categories
     Route::resource('categories', 'CategoriesController', ['except' => ['create', 'edit']]);
 
-    //posts categories
+    // Medias
+    Route::get('medias/unique/{medias}', ['as' => 'api.unique.medias', 'uses' => 'MediasController@unique']);
+    Route::resource('medias', 'MediasController', ['except' => ['create', 'edit']]);
+
+    // Users
+    Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
+
+    // Posts categories
     Route::patch('posts/{posts}/categories', ['as' => 'api.posts.categories.sync', 'uses' => 'PostsCategoriesController@sync']);
     Route::resource('posts.categories', 'PostsCategoriesController', ['only' => ['index', 'store', 'destroy']]);
 
-    //categories posts
+    // Categories posts
     Route::get('categories/{categories}/posts', [ 'as' => 'api.categories.posts.index', 'uses' => 'CategoriesPostsController@index']);
 
-    //users
+    // Users
     Route::get('me', ['as' => 'api.me.show', 'uses' => 'MeController@show']);
     Route::patch('me', ['as' => 'api.me.update', 'uses' => 'MeController@update']);
     Route::put('me', ['as' => 'api.me.update', 'uses' => 'MeController@update']);
+
 });
 
 /*
@@ -57,7 +68,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'api', 'namespace' => 'Api'], f
 | Dashboard Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['prefix' => 'dashboard', 'middleware' => 'authorized:view-dashboard'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/{vue_capture?}', function () {
         return view('admin.index');
     })->where('vue_capture', '[\/\w\.-]*');

@@ -32,9 +32,23 @@ router.map({
         name: 'editpost',
         component: require('./components/Editpost.vue')
     },
+
+
+    // Media
+    '/medias': {
+        component: require('./components/Medias.vue')
+    },
+    '/medias/:hashid/edit': {
+        name: 'editmedia',
+        component: require('./components/Editmedia.vue')
+    },
+
+    // Users
     '/users': {
         component: require('./components/Users.vue')
     },
+
+    // Categories
     '/categories': {
         component: require('./components/Categories.vue')
     },

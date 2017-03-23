@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\ApiController;
 use App\Post;
+use App\Media;
 use App\Transformers\PostTransformer;
+use App\Transformers\MediaTransformer;
+use Hashids;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -95,7 +98,8 @@ class PostsController extends ApiController
         if($request['file']->isValid()){
             if($post->hasMedia()){
                 foreach ($post->getMedia('featured') as $media) {
-                    $media->delete();
+                    $media->update(['collection_name' => null]);
+                    $media->save();
                 }
             }
             //when we are working on local don't upload images to s3
@@ -104,9 +108,7 @@ class PostsController extends ApiController
             } else {
                 $post->addMedia($request->file('file'))->preservingOriginal()->toMediaLibrary('featured');
             }
-
-        }
-        else {
+        } else {
             return $this->errorWrongArgs("No image submited.");
         }
 
@@ -128,7 +130,7 @@ class PostsController extends ApiController
     {
         //create new slug
         $post->update(['slug' => null]);
-        
+
         if($request->user()->can('publish_post')){
             $post->markApproved();
         }
@@ -137,7 +139,31 @@ class PostsController extends ApiController
         }
         return $this->respondWith($post, new PostTransformer);
     }
-    
+
+    public function medias(Request $request, Post $post) {
+        return $this->respondWith(
+            $post->getMedia(),
+            new MediaTransformer
+        );
+    }
+
+    public function putInFront(Request $request, Media $media)
+    {
+        $id_Media = Hashids::decode($request->hashid);
+        $media = Media::where('id', $id_Media)->first();
+        $post = Post::find($request->model_id);
+        foreach($post->getMedia() as $postMedia) {
+            $postMedia->update(['collection_name' => ""]);
+        }
+        $media->update(['collection_name' => "featured"]);
+        $media->save();
+
+         return $this->respondWithArray([
+             'success' => true,
+             'message' => 'Successfully updated featured.'
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

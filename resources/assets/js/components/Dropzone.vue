@@ -13,7 +13,7 @@
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <button class="btn btn-warning btn-flat btn-block fileinput-button dz-clickable">
                     <i class="fa fa-edit"></i>
-                    <span>Update Image</span>
+                    <span>Upload new media</span>
                 </button>
             </div>
         </div>
