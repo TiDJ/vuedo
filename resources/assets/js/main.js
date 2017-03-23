@@ -3,11 +3,9 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 
-
 Vue.use(VueRouter)
-
 Vue.use(VueResource)
-
+Vue.use(require('vue-moment'));
 /* eslint-disable no-new */
 
 var router = new VueRouter({
@@ -17,9 +15,12 @@ var router = new VueRouter({
 
 
 router.map({
+    // Dashboard
     '/': {
         component: require('./components/Home.vue')
     },
+
+    // Post
     '/posts/': {
         name: 'posts',
         component: require('./components/Posts.vue')
@@ -59,14 +60,14 @@ router.map({
     '/profile': {
         component: require('./components/Profile.vue')
     },
+
 })
 
 router.alias({
-
     // alias can contain dynamic segments
     // the dynamic segment names must match
-    '/posts/:hashid': '/posts/:hashid/edit',
-    'categories/:hashid': '/categories/:hashid/edit'
+    '/posts/:hashid'        : '/posts/:hashid/edit',
+    '/categories/:hashid'   : '/categories/:hashid/edit',
 })
 
 router.start(App, 'body')
