@@ -15,7 +15,13 @@
                 {{ $post->description }}
             </h3>
         </a>
-        <p class="post-meta">Posted by <a href="#">{{$post->owner->name}}</a> {{$post->moderated_at->diffForHumans()}}</p>
+        <p class="post-meta">
+            Posted by <a href="#">{{$post->owner->name}}</a>
+            {{$post->moderated_at->diffForHumans()}}
+            - <a href="{{route('web.post', $post->slug)}}#disqus_thread">
+                0 Comments
+            </a>
+        </p>
     </div>
     <hr>
 @endforeach
