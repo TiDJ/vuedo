@@ -35,7 +35,8 @@ class UserTransformer extends TransformerAbstract
             'username' => $user->username,
             'avatar'   => $user->avatar,
             'email'    => $user->email,
-            'bio'      => $user->bio
+            'bio'      => $user->bio,
+            'created'  => $user->created_at->format('Y-m-d H:i:s')
         ];
     }
 
