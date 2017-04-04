@@ -162,7 +162,7 @@ return [
          * Third Party Providers...
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
+        //Barryvdh\Debugbar\ServiceProvider::class,
 
         Cyvelnet\Laravel5Fractal\Laravel5FractalServiceProvider::class,
         Vinkla\Hashids\HashidsServiceProvider::class,
