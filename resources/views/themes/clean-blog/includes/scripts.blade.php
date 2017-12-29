@@ -7,6 +7,8 @@
 <!-- Theme JavaScript -->
 <script src="{{ asset('js/clean-blog.min.js') }}"></script>
 
+<script id="dsq-count-scr" src="//tom-jamon.disqus.com/count.js" async></script>
+
 {{-- livereload--}}
 @if ( Config::get('app.debug') )
     <script type="text/javascript">

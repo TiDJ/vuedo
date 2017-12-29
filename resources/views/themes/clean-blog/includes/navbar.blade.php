@@ -7,7 +7,7 @@
                 <span class="sr-only">Toggle navigation</span>
                 Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="{{route('web.home')}}">Vuedo</a>
+            <a class="navbar-brand" href="{{route('web.home')}}">{{Config::get('website.name')}}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -20,9 +20,6 @@
                             {{$category->name}}</a>
                     </li>
                 @endforeach
-                <li>
-                    <a href="/dashboard">Administration</a>
-                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
